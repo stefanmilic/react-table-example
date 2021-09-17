@@ -6,7 +6,7 @@ executors:
   my-executor:
     docker:
       - image: 'cimg/python:3.6'
-    working_directory: /tmp
+    working_directory: ~/repo
 
 
 jobs:
@@ -14,17 +14,23 @@ jobs:
     executor: my-executor
     steps:
       - checkout
-      - run: mkdir bucket && echo "lorem ipsum sssssss" > bucket/build_asset.txt
+      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - persist_to_workspace:
           root: .
           paths:
-            - _build
+            - build
 
   build_dev:
     executor: my-executor
     steps:
       - attach_workspace:
           at: .
+      - run: |
+          if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
+            echo "It worked!";
+          else
+            echo "Nope!"; exit 1
+          fi
       - aws-s3/sync:
           arguments: |
             --acl public-read \
