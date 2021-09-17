@@ -2071,7 +2071,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-table@^7.0.18":
+"@types/react-table@7.0.18":
   version "7.0.18"
   resolved "https://registry.yarnpkg.com/@types/react-table/-/react-table-7.0.18.tgz#df61f8272fd3add86b442a90baa6dbaef9b1f32a"
   integrity sha512-O4iKmVYVQz+6Nl9LsLtWQz9Unsmq0UySJrh5hpV5d+wrf15skhB0dqI9ocCNovJpcYxGjHrn3VbeSyAcaxHZtA==
