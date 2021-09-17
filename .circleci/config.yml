@@ -3,10 +3,13 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2
+orbs:
+  aws-s3: circleci/aws-s3@1.0.11
 jobs:
   build:
     docker:
-      - image: circleci/node:13
+      - image: circleci/node:13-browsers
+
     working_directory: ~/repo
     environment:
       BASH_ENV: bash_env
@@ -25,13 +28,16 @@ jobs:
       - save_cache:
           paths:
             - node_modules
+            - ~/.npm
+            - ~/.cache
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Install pip
-          command: sudo apt-get update && sudo apt-get install python3-pip
-      - run:
-          name: Install aws cli
-          command: sudo pip3 install -q awscli --upgrade
-      - run:
-          name: deploy
-          command: yarn run deploy
+          name: Yarn build
+          command: yarn build
+      - aws-s3/sync:
+          from: build
+          to: "s3://widget-table/"
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
+          overwrite: true
