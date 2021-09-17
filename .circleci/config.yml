@@ -45,18 +45,18 @@ jobs:
           at: .
       - checkout
       - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
-      # - run: |
-      #     if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
-      #       echo "It worked!";
-      #     else
-      #       echo "Nope!"; exit 1
-      #     fi
       - aws-s3/sync:
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
           from: bucket
           to: 's3://widget-table/prefix'
+      - run: |
+          if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
+            echo "It worked!";
+          else
+            echo "Nope!"; exit 1
+          fi
 
 workflows:
   dev-deploy:
