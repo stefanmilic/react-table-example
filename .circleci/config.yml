@@ -43,7 +43,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      # - checkout
+      - checkout
       # - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - aws-s3/sync:
           arguments: |
