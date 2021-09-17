@@ -6,7 +6,7 @@ executors:
   my-executor:
     docker:
       - image: 'cimg/python:3.6'
-
+    working_directory: /tmp
 
 
 jobs:
