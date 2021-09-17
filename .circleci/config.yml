@@ -69,6 +69,8 @@ workflows:
     jobs:
       - build
       - build_prod:
+          requires:
+            - build
           filters:
             branches:
               only: /master/
