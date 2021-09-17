@@ -1,17 +1,26 @@
 version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.0
-jobs:
-  build:
+
+executors:
+  my-executor:
     docker:
       - image: 'cimg/python:3.6'
+
+
+jobs:
+  build:
+    executor: my-executor
     steps:
       - checkout
       - run: mkdir bucket && echo "lorem ipsum sssssss" > bucket/build_asset.txt
+      - persist_to_workspace:
+          root: .
+          paths:
+            - test
 
   build_dev:
-    docker:
-      - image: 'cimg/python:3.6'
+    executor: my-executor
     steps:
       - checkout
       - aws-s3/sync:
@@ -22,10 +31,11 @@ jobs:
           to: 's3://$S3_BUCKET_NAME-dev/prefix'
 
   build_prod:
-    docker:
-      - image: 'cimg/python:3.6'
+    executor: my-executor
     steps:
       - checkout
+      - attach_workspace:
+          at: .
       - aws-s3/sync:
           arguments: |
             --acl public-read \
