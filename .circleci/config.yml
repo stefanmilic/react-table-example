@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.0
 jobs:
-  build:
+  deploy:
     docker:
       - image: circleci/node:12.9.1-browsers
       - image: 'cimg/python:3.6'
@@ -35,4 +35,4 @@ jobs:
 workflows:
   s3-example:
     jobs:
-      - build
+      - deploy
