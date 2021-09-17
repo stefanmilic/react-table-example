@@ -27,9 +27,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       - run:
-          name: Set AWS credentials
-          command: ./node_modules/.bin/sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --overwrite
-      - run:
           name: Install pip
           command: sudo apt-get update && sudo apt-get install python3-pip
       - run:
