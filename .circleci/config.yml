@@ -14,7 +14,7 @@ jobs:
     executor: my-executor
     steps:
       - checkout
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
+      - run: mkdir bucket && echo "lorem ipsum strava" > bucket/build_asset.txt
       - persist_to_workspace:
           root: .
           paths:
