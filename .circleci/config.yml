@@ -41,7 +41,7 @@ jobs:
             --acl public-read \
             --cache-control "max-age=86400"
           from: bucket
-          to: 's3://$S3_BUCKET_NAME-prod/prefix'
+          to: 's3://$S3_BUCKET_NAME/prefix'
 
 workflows:
   dev-deploy:
