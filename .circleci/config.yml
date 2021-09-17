@@ -60,7 +60,10 @@ jobs:
 workflows:
   dev-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: /develop/
       - build_dev:
           requires:
             - build
@@ -69,7 +72,10 @@ workflows:
               only: /develop/
   prod-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: /master/
       - build_prod:
           requires:
             - build
