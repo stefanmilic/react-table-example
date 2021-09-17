@@ -172,7 +172,7 @@ const columns = [
     Header: 'Name',
     columns: [
       {
-        Header: 'First Name',
+        Header: 'FIRST NAME',
         accessor: 'firstName',
         aggregate: 'count',
         Aggregated: ({ cell: { value } }: CellProps<PersonData>) => `${value} Names`,

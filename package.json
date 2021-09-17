@@ -49,7 +49,8 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "postinstall": "patch-package",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "deploy": "yarn build && aws s3 sync ./build s3://widget-table --delete --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"
