@@ -187,7 +187,7 @@ const columns = [
     ],
   },
   {
-    Header: 'Info',
+    Header: 'INFO',
     columns: [
       {
         Header: 'Age',
