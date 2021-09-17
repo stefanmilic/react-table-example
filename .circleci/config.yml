@@ -30,6 +30,10 @@ jobs:
             --delete \
             --acl public-read \
             --cache-control "max-age=86400" \
+      - run:
+          name: "Invalidate CloudFront Cache"
+          command: |
+            aws cloudfront create-invalidation --distribution-id E1O45CYE33378K --paths "/*"
 
 workflows:
   s3-example:
