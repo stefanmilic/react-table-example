@@ -18,7 +18,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - public
+            - bucket
 
   build_dev:
     executor: my-executor
@@ -43,12 +43,12 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: |
-          if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
-            echo "It worked!";
-          else
-            echo "Nope!"; exit 1
-          fi
+      # - run: |
+      #     if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
+      #       echo "It worked!";
+      #     else
+      #       echo "Nope!"; exit 1
+      #     fi
       - aws-s3/sync:
           arguments: |
             --acl public-read \
