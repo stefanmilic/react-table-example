@@ -2,40 +2,23 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.0
 jobs:
-  deploy:
+  build:
     docker:
-      - image: circleci/node:12.9.1-browsers
       - image: 'cimg/python:3.6'
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-            - ~/.npm
-            - ~/.cache
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run: yarn build
+      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - aws-s3/sync:
-          from: build
-          to: 's3://widget-table/'
           arguments: |
-            --delete \
             --acl public-read \
-            --cache-control "max-age=86400" \
-      - run:
-          name: "Invalidate CloudFront Cache"
-          command: |
-            aws cloudfront create-invalidation --distribution-id E1O45CYE33378K --paths "/*"
+            --cache-control "max-age=86400"
+          aws-access-key-id: AWS_ACCESS_KEY_ID_BLUE
+          aws-region: AWS_REGION_BLUE
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
+          from: bucket
+          to: 's3://$S3_BUCKET_NAME/prefix'
 
 workflows:
   s3-example:
     jobs:
-      - deploy
+      - build
