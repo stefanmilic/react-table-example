@@ -26,11 +26,10 @@ jobs:
       - aws-s3/sync:
           from: build
           to: 's3://widget-table/'
-          overwrite: true # default is false
           arguments: |
+            --delete \
             --acl public-read \
             --cache-control "max-age=86400" \
-
 
 workflows:
   s3-example:
