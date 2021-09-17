@@ -60,6 +60,7 @@ jobs:
 workflows:
   dev-deploy:
     jobs:
+      - build
       - build_dev:
           requires:
             - build
