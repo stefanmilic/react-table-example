@@ -43,8 +43,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - checkout
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
+      # - checkout
+      # - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - aws-s3/sync:
           arguments: |
             --acl public-read \
@@ -52,7 +52,7 @@ jobs:
           from: bucket
           to: 's3://widget-table/prefix'
       - run: |
-          if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
+          if [[ `cat bucket/build_asset.txt` == "lorem ipsum" ]]; then
             echo "It worked!";
           else
             echo "Nope!"; exit 1
