@@ -35,11 +35,11 @@ jobs:
           aws-region: AWS_REGION_BLUE
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
           from: bucket
-          to: 's3://$S3_BUCKET_NAME/prefix'
+          to: 's3://$S3_BUCKET_NAME-prod/prefix'
       - run:
           name: "echo an env var that is part of our project"
           command: |
-            echo $S3_BUCKET_NAME-prod # this env var must be set within the project
+            echo $S3_BUCKET_NAME # this env var must be set within the project
 
 workflows:
   dev-deploy:
