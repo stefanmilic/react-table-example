@@ -2,44 +2,36 @@ version: 2.1
 orbs:
   aws-s3: circleci/aws-s3@3.0
 jobs:
-  build_dev:
+  build:
     docker:
       - image: 'cimg/python:3.6'
     steps:
       - checkout
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
+      - run: mkdir bucket && echo "lorem ipsum sssssss" > bucket/build_asset.txt
+
+  build-dev:
+    docker:
+      - image: 'cimg/python:3.6'
+    steps:
+      - checkout
       - aws-s3/sync:
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
-          aws-access-key-id: AWS_ACCESS_KEY_ID_BLUE
-          aws-region: AWS_REGION_BLUE
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
           from: bucket
-          to: 's3://$S3_BUCKET_NAME/prefix'
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            echo $S3_BUCKET_NAME # this env var must be set within the project
+          to: 's3://$S3_BUCKET_NAME-dev/prefix'
+
   build_prod:
     docker:
       - image: 'cimg/python:3.6'
     steps:
       - checkout
-      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       - aws-s3/sync:
           arguments: |
             --acl public-read \
             --cache-control "max-age=86400"
-          aws-access-key-id: AWS_ACCESS_KEY_ID_BLUE
-          aws-region: AWS_REGION_BLUE
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY_BLUE
           from: bucket
           to: 's3://$S3_BUCKET_NAME-prod/prefix'
-      - run:
-          name: "echo an env var that is part of our project"
-          command: |
-            echo $S3_BUCKET_NAME # this env var must be set within the project
 
 workflows:
   dev-deploy:
@@ -50,6 +42,7 @@ workflows:
               only: /develop/
   prod-deploy:
     jobs:
+      - build
       - build_prod:
           filters:
             branches:
