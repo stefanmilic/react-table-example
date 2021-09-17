@@ -58,6 +58,12 @@ jobs:
           to: 's3://$S3_BUCKET_NAME-prod'
 
 workflows:
+  dev-build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: /(^develop$)|(^main$)/
   dev-deploy:
     jobs:
       - build:
