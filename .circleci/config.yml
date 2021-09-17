@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: mkdir bucket && echo "lorem ipsum sssssss" > bucket/build_asset.txt
 
-  build-dev:
+  build_dev:
     docker:
       - image: 'cimg/python:3.6'
     steps:
