@@ -63,7 +63,7 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: /(^develop$)|(^main$)/
+              ignore: /(^develop$)|(^master$)/
   dev-deploy:
     jobs:
       - build:
