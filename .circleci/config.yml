@@ -18,7 +18,7 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
-            - build
+            - public
 
   build_dev:
     executor: my-executor
