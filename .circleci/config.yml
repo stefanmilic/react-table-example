@@ -28,7 +28,7 @@ jobs:
             --acl public-read \
             --cache-control "max-age=86400"
           from: bucket
-          to: 's3://$S3_BUCKET_NAME-dev/prefix'
+          to: 's3://widget-table/prefix'
 
   build_prod:
     executor: my-executor
@@ -41,7 +41,7 @@ jobs:
             --acl public-read \
             --cache-control "max-age=86400"
           from: bucket
-          to: 's3://$S3_BUCKET_NAME/prefix'
+          to: 's3://widget-table/prefix'
 
 workflows:
   dev-deploy:
