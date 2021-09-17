@@ -34,3 +34,8 @@ jobs:
             --acl public-read \
             --cache-control "max-age=86400"
           overwrite: true
+
+workflows:
+  s3-example:
+    jobs:
+      - build
