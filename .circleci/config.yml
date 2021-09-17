@@ -24,12 +24,12 @@ jobs:
 
       - run: yarn build
       - aws-s3/sync:
-          arguments: |
-            --acl public-read \
-            --cache-control "max-age=86400" \
           from: build
           to: 's3://widget-table/'
           overwrite: true # default is false
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400" \
 
 
 workflows:
