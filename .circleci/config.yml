@@ -29,6 +29,8 @@ jobs:
             --cache-control "max-age=86400"
           from: build
           to: 's3://widget-table/'
+          overwrite: true # default is false
+
 
 workflows:
   s3-example:
