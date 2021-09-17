@@ -43,6 +43,8 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - checkout
+      - run: mkdir bucket && echo "lorem ipsum" > bucket/build_asset.txt
       # - run: |
       #     if [[ `cat ~/repo/bucket/build_asset.txt` == "lorem ipsum" ]]; then
       #       echo "It worked!";
