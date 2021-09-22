@@ -30,7 +30,9 @@ jobs:
       # - run: yarn build
       - persist_to_workspace:
           root: ~/repo
-          paths: .
+          paths:
+            - ./node_modules
+            - ./package.json
 
   build_dev:
     executor: my-executor
