@@ -31,7 +31,9 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths:
-            - .
+            - node_modules
+            - package-json
+            - yarn.lock
 
   build_dev:
     executor: my-executor
