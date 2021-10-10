@@ -1,0 +1,11 @@
+{
+  "local": {
+    "deletionPolicy": "Delete"
+  },
+  "dev": {
+    "deletionPolicy": "Delete"
+  },
+  "prod": {
+    "deletionPolicy": "Retain"
+  }
+}
