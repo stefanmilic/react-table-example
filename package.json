@@ -52,6 +52,7 @@
     "postinstall": "patch-package",
     "start": "react-scripts start",
     "test": "react-scripts test",
+    "post_deploy": "sls config credentials",
     "deploy:resources": "sls deploy"
   },
   "eslintConfig": {
