@@ -20,7 +20,7 @@ if [ ! -z "$STAGE" ] ; then
   echo "Deploying new version of football widget on $STAGE"
 
   echo "1. set aws credentials"
- npm run post_deploy --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --overwrite
+  npm run post_deploy --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --overwrite
   echo "2. deploy aws resources"
   npm run deploy:resources -- --stage $STAGE
 else

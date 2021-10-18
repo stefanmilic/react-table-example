@@ -52,7 +52,7 @@
     "postinstall": "patch-package",
     "start": "react-scripts start",
     "test": "react-scripts test",
-    "post_deploy": "sls config credentials",
+    "post_deploy": "sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --overwrite",
     "deploy:resources": "sls deploy"
   },
   "eslintConfig": {
