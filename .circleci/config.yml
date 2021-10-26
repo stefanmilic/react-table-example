@@ -58,6 +58,19 @@ jobs:
       - run:
           name: Deploy on AWS
           command: ./deploy.sh "$CIRCLE_BRANCH"
+      - run:
+          name: uploading
+          command: |
+            aws s3 sync .build/ s3://football-widget-test-$STAGE --delete --acl public-read --region eu-west-1
+      - run:
+          name: getting
+          command: |
+           CLOUDFRONT_DISTRIBUTION_ID="$(aws cloudfront list-distributions --query "DistributionList.Items[].{id: Id, OriginDomainName: Origins.Items[0].DomainName}[?contains(OriginDomainName, 'football-widget-test-prod')] | [0].id" --out text)"
+      - run:
+          name: invalidation
+          command: |
+            aws cloudfront create-invalidation --distribution-id ${CLOUDFRONT_DISTRIBUTION_ID} --paths "/*"
+
       # - aws-s3/sync:
       #     arguments: |
       #       --delete \
