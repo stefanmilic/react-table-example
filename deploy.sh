@@ -26,7 +26,7 @@ if [ ! -z "$STAGE" ] ; then
   echo "3. build static assets"
     yarn build
   echo "3. uploading static assets to football-widget-test-$STAGE"
-   aws s3 sync .build/ s3://football-widget-test-$STAGE --delete --acl public-read --region eu-west-1
+   aws s3 sync build/ s3://football-widget-test-$STAGE --delete --acl public-read --region eu-west-1
   echo "4. getting cloudfront distribution id"
   CLOUDFRONT_DISTRIBUTION_ID="$(aws cloudfront list-distributions --query "DistributionList.Items[].{id: Id, OriginDomainName: Origins.Items[0].DomainName}[?contains(OriginDomainName, 'football-widget-test-prod')] | [0].id" --out text)"
   echo "5. cloudfront invalidation"
