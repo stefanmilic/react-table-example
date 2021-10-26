@@ -55,13 +55,13 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      # - run: yarn build
-      - run:
-          name: Install pip
-          command: sudo apt-get update && sudo apt-get install python3-pip
-      - run:
-          name: Install aws cli
-          command: sudo pip3 install -q awscli --upgrade
+      - run: yarn build
+      # - run:
+      #     name: Install pip
+      #     command: sudo apt-get update && sudo apt-get install python3-pip
+      # - run:
+      #     name: Install aws cli
+      #     command: sudo pip3 install -q awscli --upgrade
       - run:
           name: Deploy on AWS
           command: ./deploy.sh "$CIRCLE_BRANCH"
