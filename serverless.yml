@@ -18,8 +18,8 @@ custom:
           acl: public-read
           localDir: build/
           params: # optional
-            - index.html:
-                CacheControl: 'no-cache'
+            - '/*':
+                CacheControl: 'public, max-age=0, must-revalidate'
 
 resources:
   Resources:
