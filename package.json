@@ -40,6 +40,7 @@
     "prettier-plugin-import-sort": "^0.0.4",
     "react-scripts": "3.4.1",
     "serverless": "^2.62.0",
+    "serverless-s3-deploy": "^0.10.1",
     "serverless-s3-sync": "^1.17.1",
     "typescript": "~3.9.3",
     "typesync": "^0.7.0"
