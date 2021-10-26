@@ -11,7 +11,7 @@ plugins:
 
 custom:
     config: ${file(./config.json)}
-    bucketName: football-widget-standings-${self:provider.stage}
+    bucketName: football-widget-${self:provider.stage}
     s3Sync:
         - bucketName: ${self:custom.bucketName}
           localDir: build/
