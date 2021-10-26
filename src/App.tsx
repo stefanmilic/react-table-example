@@ -169,7 +169,7 @@ function NumberRangeColumnFilter({
 
 const columns = [
   {
-    Header: 'Name',
+    Header: 'name',
     columns: [
       {
         Header: 'First Name',

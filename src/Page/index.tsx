@@ -6,7 +6,7 @@ import React from 'react'
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     main: {
-      background: '#FFFFF3',
+      background: '#FFFFF',
       position: 'relative',
       zIndex: 3,
       margin: '10px 20px 0px',

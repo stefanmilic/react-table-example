@@ -49,7 +49,6 @@
     "eject": "react-scripts eject",
     "format": "prettier --no-color --loglevel warn --write 'src/**/*.{js,jsx,ts,tsx,json}'",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "postinstall": "patch-package",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "post_deploy": "sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --overwrite",
