@@ -1,12 +1,12 @@
 version: 2.1
-orbs:
-  aws-s3: circleci/aws-s3@3.0
+# orbs:
+#   aws-s3: circleci/aws-s3@3.0
 
 executors:
   my-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-      # - image: 'cimg/python:3.6'
+      - image: cibuilds/aws:latest
     working_directory: ~/repo
 
 
@@ -58,14 +58,14 @@ jobs:
       - run:
           name: Deploy on AWS
           command: ./deploy.sh "$CIRCLE_BRANCH"
-      - aws-s3/sync:
-          arguments: |
-            --delete \
-            --acl public-read \
-            --cache-control "max-age=86400"
-          from: build
-          # add env variable to project settings
-          to: 's3://football-widget-test-prod'
+      # - aws-s3/sync:
+      #     arguments: |
+      #       --delete \
+      #       --acl public-read \
+      #       --cache-control "max-age=86400"
+      #     from: build
+      #     # add env variable to project settings
+      #     to: 's3://football-widget-test-prod'
 
 workflows:
   dev-build:

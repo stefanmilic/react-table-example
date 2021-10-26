@@ -6,19 +6,19 @@ provider:
     region: eu-west-1
     stage: ${opt:stage, 'dev'}
 
-plugins:
-  - serverless-s3-deploy
+# plugins:
+#   - serverless-s3-deploy
 
 custom:
     config: ${file(./config.json)}
     bucketName: football-widget-test-${self:provider.stage}
-    assets:
-      targets:
-       - bucket: ${self:custom.bucketName}
-         empty: true
-         files:
-          - source: build/
-            globs: '**/*'
+    # assets:
+    #   targets:
+    #    - bucket: ${self:custom.bucketName}
+    #      empty: true
+    #      files:
+    #       - source: build/
+    #         globs: '**/*'
     # s3Sync:
     #     - bucketName: ${self:custom.bucketName}
     #       deleteRemoved: true
