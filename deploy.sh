@@ -22,7 +22,9 @@ if [ ! -z "$STAGE" ] ; then
   echo "1. set aws credentials"
   ./node_modules/.bin/sls config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY --overwrite
   echo "2. deploy aws resources"
-  npm run deploy:resources -- --stage $STAGE
+  yarn run deploy:resources -- --stage $STAGE
+  echo "3. build static assets"
+    yarn run build:${STAGE}
   echo "3. uploading static assets to football-widget-test-$STAGE"
    aws s3 sync .build/ s3://football-widget-test-$STAGE --delete --acl public-read --region eu-west-1
   echo "4. getting cloudfront distribution id"

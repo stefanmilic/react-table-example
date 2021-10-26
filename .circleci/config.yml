@@ -39,7 +39,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: yarn build
+      # - run: yarn build
       - run:
           name: Deploy on AWS
           command: ./deploy.sh "$CIRCLE_BRANCH"
@@ -55,7 +55,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: yarn build
+      # - run: yarn build
       - run:
           name: Install pip
           command: sudo apt-get update && sudo apt-get install python3-pip
