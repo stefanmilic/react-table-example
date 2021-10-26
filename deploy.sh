@@ -24,7 +24,7 @@ if [ ! -z "$STAGE" ] ; then
   echo "2. deploy aws resources"
   yarn run deploy:resources -- --stage $STAGE
   echo "3. build static assets"
-    yarn run build:${STAGE}
+    yarn run build
   echo "3. uploading static assets to football-widget-test-$STAGE"
    aws s3 sync .build/ s3://football-widget-test-$STAGE --delete --acl public-read --region eu-west-1
   echo "4. getting cloudfront distribution id"
