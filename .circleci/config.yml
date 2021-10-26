@@ -6,7 +6,8 @@ executors:
   my-executor:
     docker:
       - image: circleci/node:12.9.1-browsers
-      - image: cibuilds/aws:latest
+    environment:
+      BASH_ENV: bash_env
     working_directory: ~/repo
 
 
